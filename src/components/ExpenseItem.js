@@ -22,15 +22,57 @@ const ExpenseItem = (props) => {
             type: 'ADD_EXPENSE',
             payload: expense
         });
+    };
+
+    const decreaseAllocation = (name) => {
+        const expense = {
+            name: name,
+            cost: -10,
+        };
+
+        dispatch({
+            type: 'ADD_EXPENSE',
+            payload: expense
+        });
 
     }
 
     return (
         <tr>
-        <td>{props.name}</td>
-        <td>{currency}{props.cost}</td>
-        <td><button onClick={event=> increaseAllocation(props.name)}>+</button></td>
-        <td><TiDelete size='1.5em' onClick={handleDeleteExpense}></TiDelete></td>
+            <td>{props.name}</td>
+            <td>{currency}{props.cost}</td>
+            <td><button style={{
+                    backgroundColor: '#4fad5b',
+                    borderRadius: '50%',
+                    width: '30px',
+                    height: '30px',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    border: 'none',
+                    outline: 'none',
+                    cursor: 'pointer',
+                    color: 'white',
+                    fontSize: '2rem',
+                }} 
+                    onClick={(event) => increaseAllocation(props.name)}>
+    <span style={{ lineHeight: '0' }}>+</span>
+  </button></td>
+            <td><button style={{
+                    backgroundColor: '#b72627',
+                    borderRadius: '50%',
+                    width: '30px',
+                    height: '30px',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    border: 'none',
+                    outline: 'none',
+                    cursor: 'pointer',
+                    color: 'white',
+                    fontSize: '2rem',
+                }} onClick={event=> decreaseAllocation(props.name)}>-</button></td>
+            <td><TiDelete size='1.5em' onClick={handleDeleteExpense}></TiDelete></td>
         </tr>
     );
 };
